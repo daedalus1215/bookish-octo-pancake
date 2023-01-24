@@ -25,25 +25,37 @@ const data = {
     ],
 };
 
-
 const rows = data.products
     .map(product => {
-        //@TODO: What do we call this?
         const preTaxTotal = Number((Number(product.price.toFixed(2)) * Number(product.quantity)).toFixed(2));
         const taxRate = Number((Number(product['tax-rate']) / 100).toPrecision());
         const tax = Number(Number((preTaxTotal * taxRate).toFixed(2)).toPrecision(4));
 
         return {
             name: product.description,
+            taxRate: product['tax-rate'],
             price: product.price,
             quantity: product.quantity,
             preTaxTotal,
             tax,
             total: preTaxTotal + tax,
         }
-    });
+    }, {});
 
-// rows.map(produc);
+// console.log('rows', rows)
+let array = [];
 
+const groupByTaxRate = rows
+    .reduce((group, product) => {
+        const { taxRate, tax } = product;
+        group[taxRate] = group[taxRate] ?? [];
+        group[taxRate].push({
+            label: `vat ${taxRate}%`,
+            value: tax
+        });
+        return group;
+    }, {});
 
-console.log()
+// rows.map(row => );
+
+console.log('groupByTaxRate', groupByTaxRate)
