@@ -35,6 +35,6 @@ console.log(data.products
         return {
             ...product,
             preTaxTotal,
-            tax: preTaxTotal * taxRate
+            tax: Number((preTaxTotal * taxRate).toFixed(2)).toPrecision(4)
         }
     }))
