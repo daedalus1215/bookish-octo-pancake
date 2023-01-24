@@ -26,15 +26,24 @@ const data = {
 };
 
 
-console.log(data.products
+const rows = data.products
     .map(product => {
         //@TODO: What do we call this?
         const preTaxTotal = Number((Number(product.price.toFixed(2)) * Number(product.quantity)).toFixed(2));
         const taxRate = Number((Number(product['tax-rate']) / 100).toPrecision());
+        const tax = Number(Number((preTaxTotal * taxRate).toFixed(2)).toPrecision(4));
 
         return {
-            ...product,
+            name: product.description,
+            price: product.price,
+            quantity: product.quantity,
             preTaxTotal,
-            tax: Number((preTaxTotal * taxRate).toFixed(2)).toPrecision(4)
+            tax,
+            total: preTaxTotal + tax,
         }
-    }))
+    });
+
+// rows.map(produc);
+
+
+console.log()
