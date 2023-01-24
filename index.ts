@@ -5,7 +5,7 @@ const data = {
         // Invoice data
         "date": "12-12-2021",
         // Invoice due date
-        "due-date": "31-12-2021"
+        "due-date": "31-12-2023"
     },
 
     // Now let's add some products! Calculations will be done automatically for you.
@@ -51,4 +51,19 @@ const groupByTaxRate = rows
         return group;
     }, {});
 
+
+const totals = rows.reduce((group, product) => {
+    
+    group['subTotal'] = +Number((group['preTaxTotal'] ?? 0).toFixed(2));
+    group['subTotal'] += +Number(product.preTaxTotal).toFixed(2);
+    group['subTotal'] = Number(group['subTotal']).toFixed(2);
+
+    group['tots'] = group['total'] ?? 0;
+    group['tots'] += product.total;
+
+    return group;
+})
+
 console.log('groupByTaxRate', groupByTaxRate)
+console.log('totals', totals)
+
