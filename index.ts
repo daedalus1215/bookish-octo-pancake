@@ -42,20 +42,13 @@ const rows = data.products
         }
     }, {});
 
-// console.log('rows', rows)
-let array = [];
-
+// @TODO: Still need to add 
 const groupByTaxRate = rows
     .reduce((group, product) => {
         const { taxRate, tax } = product;
-        group[taxRate] = group[taxRate] ?? [];
-        group[taxRate].push({
-            label: `vat ${taxRate}%`,
-            value: tax
-        });
+        group[taxRate] = group[taxRate] ?? 0;
+        group[taxRate] += tax;
         return group;
     }, {});
-
-// rows.map(row => );
 
 console.log('groupByTaxRate', groupByTaxRate)
