@@ -1,24 +1,34 @@
-/*
-    1.  Let's import the easyinvoice library so we can use it.
-    2.  Let's import the built-in NodeJS fs library,
-        so we can interact with the file system to save our invoice 
-*/
-var easyinvoice = require('easyinvoice');
-var fs = require('fs');
+const data = {
+    "information": {
+        // Invoice number
+        "number": "2021.0001",
+        // Invoice data
+        "date": "12-12-2021",
+        // Invoice due date
+        "due-date": "31-12-2021"
+    },
+    
+    // Now let's add some products! Calculations will be done automatically for you.
+    "products": [
+        {
+            "quantity": "2",
+            "description": "Test1",
+            "tax-rate": 6,
+            "price": 33.87
+        },
+        {
+            "quantity": "4",
+            "description": "Test2",
+            "tax-rate": 21,
+            "price": 10.45
+        }
+    ],
+};
 
-/*  
-    3.  Let's create a data object. 
-        This object will contain all the data we would like to be visible on our invoice.
-        We will add data later in our demo.
-*/
-var data = {};
 
-//  4.    Let's use the EasyInvoice library and call the "createInvoice" function
-easyinvoice.createInvoice(data, function (result) {
-    /*  
-        5.  The 'result' variable will contain our invoice as a base64 encoded PDF
-            Now let's save our invoice to our local filesystem so we can have a look!
-            We will be using the 'fs' library we imported above for this.
-    */
-    fs.writeFileSync("invoice.pdf", result.pdf, 'base64');
-});
+
+console.log(data.products
+.map(product => ({
+    ...product,
+    total: (Number(product.price.toFixed(2)) * Number(product.quantity)).toFixed(2),
+})))
