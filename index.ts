@@ -7,7 +7,7 @@ const data = {
         // Invoice due date
         "due-date": "31-12-2021"
     },
-    
+
     // Now let's add some products! Calculations will be done automatically for you.
     "products": [
         {
@@ -26,9 +26,15 @@ const data = {
 };
 
 
-
 console.log(data.products
-.map(product => ({
-    ...product,
-    total: (Number(product.price.toFixed(2)) * Number(product.quantity)).toFixed(2),
-})))
+    .map(product => {
+        //@TODO: What do we call this?
+        const preTaxTotal = Number((Number(product.price.toFixed(2)) * Number(product.quantity)).toFixed(2));
+        const taxRate = Number((Number(product['tax-rate']) / 100).toPrecision());
+
+        return {
+            ...product,
+            preTaxTotal,
+            tax: preTaxTotal * taxRate
+        }
+    }))
