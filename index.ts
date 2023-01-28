@@ -12,13 +12,13 @@ const data = {
     "products": [
         {
             "quantity": "2",
-            "description": "Test1",
+            "description": "Product1",
             "tax-rate": 6,
             "price": 33.87
         },
         {
             "quantity": "4",
-            "description": "Test2",
+            "description": "Product2",
             "tax-rate": 21,
             "price": 10.45
         }
@@ -54,16 +54,30 @@ const groupByTaxRate = rows
 
 const totals = rows.reduce((group, product) => {
     
-    group['subTotal'] = +Number((group['preTaxTotal'] ?? 0).toFixed(2));
+    group['subTotal'] = Number(group['subTotal'] ?? 0);
     group['subTotal'] += +Number(product.preTaxTotal).toFixed(2);
     group['subTotal'] = Number(group['subTotal']).toFixed(2);
 
-    group['tots'] = group['total'] ?? 0;
+    group['tots'] = group['tots'] ?? 0;
     group['tots'] += product.total;
 
     return group;
-})
+}, {})
 
-console.log('groupByTaxRate', groupByTaxRate)
-console.log('totals', totals)
+//@TODO: LALA - do stuff with dates and figuring out if its due
+// console.log('groupByTaxRate', groupByTaxRate)
+// console.log('totals', totals)
+// console.log('product', rows)
 
+
+console.log('Product | Quantity | Price | Total');
+rows.forEach(row => {
+    console.log(`${row.name} | ${row.quantity} | ${row.price} | ${row.preTaxTotal}`)
+});
+
+console.log(`Subtotal: ${totals.subTotal}`)
+for(const [key, value] of Object.entries(groupByTaxRate)){
+    console.log(`vat ${key} %: ${value}`);
+};
+console.log('___________________________')
+console.log(`Total: ${totals.tots}`)
