@@ -81,3 +81,11 @@ for(const [key, value] of Object.entries(groupByTaxRate)){
 };
 console.log('___________________________')
 console.log(`Total: ${totals.tots}`)
+
+const [day, month, year] = data.information['due-date'].split('-');
+
+if ( new Date(`${year}-${month}-${day}`).getTime() < Date.now()) {
+    console.log('invoice is past due');
+} else {
+    console.log('invoice is not past due')
+}
