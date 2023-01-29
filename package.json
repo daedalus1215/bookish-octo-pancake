@@ -6,7 +6,12 @@
   "author": "daedalus1215 <13687739+daedalus1215@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
-    "easyinvoice": "^2.3.3"
+    "easyinvoice": "^2.3.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "scripts": {
+    "tsNode": "ts-node index.ts"
   },
   "devDependencies": {
     "@types/node": "^18.11.18"
