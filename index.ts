@@ -58,12 +58,8 @@ const groupByTaxRate2 = newRows.reduce((group:any, product) => {
 }, {});
 
 const totals2 = newRows.reduce((group:{subTotal: number, total: number}, product) => {
-    group['subTotal'] = group['subTotal'] ?? 0;
     group['subTotal'] += Number(product.preTaxTotal);
-
-    group['total'] = group['total'] ?? 0;
     group['total'] += Number(product.totalWithTax);
-
     return group;
 }, {subTotal: 0, total: 0});
 
