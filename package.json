@@ -11,7 +11,7 @@
     "typescript": "^4.9.4"
   },
   "scripts": {
-    "tsNode": "ts-node index.ts"
+    "generateInvoice": "ts-node invoiceGeneration.ts"
   },
   "devDependencies": {
     "@types/node": "^18.11.18"
