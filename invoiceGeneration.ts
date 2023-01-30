@@ -1,3 +1,6 @@
+// Having this mirror what is in invoice.pdf.
+
+
 const data2 = {
     "information": {
         // Invoice number
