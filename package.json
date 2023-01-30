@@ -11,9 +11,11 @@
     "typescript": "^4.9.4"
   },
   "scripts": {
-    "generateInvoice": "ts-node invoiceGeneration.ts"
+    "generateInvoice": "ts-node invoiceGeneration.ts",
+    "subs": "ts-node subs/__tests__/sub.test.ts"
   },
   "devDependencies": {
+    "@types/jest": "^29.4.0",
     "@types/node": "^18.11.18"
   }
 }
