@@ -8,14 +8,17 @@ export const filterUsersInMonthAndSubscription: filterUsers = (user, yearMonth, 
 type isDateInRange = (yearMonth: string, userDate: Date) => boolean;
 export const isDateWithinMonth: isDateInRange = (yearMonth, userDate) => {
     const targetDate = new Date(yearMonth);
+    
+    let minimumDate = firstDay(userDate)
+    let maximumDate = lastDay(userDate);
+    console.log('minimumDate', minimumDate.getTime());
+    
+    const minDate = minimumDate.setHours(0,0,0, 0);
+    console.log('minDate', minDate);
+    const maxDate = maximumDate.setHours(0,0,0, 0);
 
-    var minimumDate = firstDay(userDate)
-    var maximumDate = lastDay(userDate);
-
-    console.log('targetDate', targetDate)
-    console.log('minDate', minimumDate)
-    console.log('maxDate', maximumDate)
-    if (targetDate >= minimumDate && targetDate <= maximumDate) {
+    if (targetDate.getTime() >= minDate
+        && targetDate.getTime() <= maxDate) {
         console.log('true')
         return true;
     }
