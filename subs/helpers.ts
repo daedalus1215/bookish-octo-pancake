@@ -1,11 +1,22 @@
+import { ISub, IUser } from "./sub";
+
+type filterUsers = (user: IUser, yearMonth: string, subscription: ISub) => boolean;
+
+export const filterUsersInMonthAndSubscription: filterUsers = (user, yearMonth, subscription) => (isDateWithinMonth(yearMonth, user.active))
+// && user.customerId === subscription.cusId);
+
 type isDateInRange = (yearMonth: string, userDate: Date) => boolean;
 export const isDateWithinMonth: isDateInRange = (yearMonth, userDate) => {
     const targetDate = new Date(yearMonth);
 
-    var minDate = firstDay(userDate)
-    var maxDate = lastDay(userDate);
+    var minimumDate = firstDay(userDate)
+    var maximumDate = lastDay(userDate);
 
-    if (targetDate >= minDate && targetDate <= maxDate) {
+    console.log('targetDate', targetDate)
+    console.log('minDate', minimumDate)
+    console.log('maxDate', maximumDate)
+    if (targetDate >= minimumDate && targetDate <= maximumDate) {
+        console.log('true')
         return true;
     }
 

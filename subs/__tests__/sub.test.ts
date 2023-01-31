@@ -1,50 +1,49 @@
-import { charges } from "../sub";
+import { charges, ISub, IUser } from "../sub";
 
 
-const users = [
+const users: IUser[] = [
     {
         id: 1,
         name: 'E1',
-        activatedOn: new Date('2019-01-01'),
-        deactivatedOn: null,
+        active: new Date('2019-01-01'),
         customerId: 1,
     },
     {
         id: 2,
         name: 'E2',
-        activatedOn: new Date('2019-01-01'),
-        deactivatedOn: null,
+        active: new Date('2019-01-01'),
         customerId: 1,
     },
     {
         id: 3,
         name: 'E3',
-        activatedOn: new Date('2020-12-31'),
-        deactivatedOn: null,
+        active: new Date('2020-12-31'),
         customerId: 1,
     },
     {
         id: 3,
         name: 'E4',
-        activatedOn: new Date('2020-12-31'),
-        deactivatedOn: null,
+        active: new Date('2020-12-31'),
+        customerId: 1,
+    },
+    {
+        id: 4,
+        name: 'E5',
+        active: new Date('2021-12-01'),
+        deactive: new Date('2021-12-14'),
         customerId: 1,
     }
 ];
 
-const plan = {
+const plan: ISub = {
     id: 1,
-    customerId: 1,
-    monthlyPriceInCents: 5000,
+    cusId: 1,
+    price: 5000,
 };
 
 console.log('works when no users are active', charges('2018-10', plan, users) === 0)
 const expectedUserCount = 2;
 // I created a plan for customers with id of 3 to fullfill this requirement. 
-const planForCustomer3 = {
-    id: 2,
-    customerId: 3,
-    monthlyPriceInCents: 5000,
-}
-console.log('works when the active users are active the entire month', charges('2020-12', planForCustomer3, users) === expectedUserCount * 5000);
+console.log('asdas', charges('2020-12', plan, users));
+console.log('works when the active users are active the entire month', charges('2020-12', plan, users) === expectedUserCount * 5000);
 
