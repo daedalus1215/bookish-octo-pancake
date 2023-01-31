@@ -1,4 +1,5 @@
-export const isDateInRange = (yearMonth: string, userDate: Date) => {
+type isDateInRange = (yearMonth: string, userDate: Date) => boolean;
+export const isDateWithinMonth: isDateInRange = (yearMonth, userDate) => {
     const targetDate = new Date(yearMonth);
 
     var minDate = firstDay(userDate)
@@ -14,4 +15,4 @@ export const isDateInRange = (yearMonth: string, userDate: Date) => {
 type dateGetters = (date: Date) => Date;
 export const firstDay: dateGetters = (date) => new Date(date.getFullYear(), date.getMonth(), 1);
 export const lastDay: dateGetters = (date) => new Date(date.getFullYear(), date.getMonth() + 1, 0);
-export const next:dateGetters = (date)=> new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+export const next: dateGetters = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
