@@ -1,9 +1,10 @@
-import { isDateWithinMonth } from "./helpers";
+import { filterUsersInMonthAndSubscription } from "./helpers";
 
 export interface IUser {
     id: number;
     name: string;
     active: Date;
+    deactive?: Date;
     customerId: number;
 }
 
@@ -13,10 +14,6 @@ export interface ISub {
     price: number;
 }
 
-type filterUsers = (user: IUser, yearMonth: string, subscription: ISub) => boolean;
-
-const filterUsersInMonthAndSubscription: filterUsers = (user, yearMonth, subscription) => (isDateWithinMonth(yearMonth, user.active)
-    && user.id === subscription.cusId);
 
 export const charges = (yearMonth: string, subscription: ISub, users: IUser[]): number => {
     const subscribers = users
