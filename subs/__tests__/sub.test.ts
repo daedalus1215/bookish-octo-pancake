@@ -43,7 +43,5 @@ const plan: ISub = {
 
 console.log('works when no users are active', charges('2018-10', plan, users) === 0)
 const expectedUserCount = 2;
-// I created a plan for customers with id of 3 to fullfill this requirement. 
-console.log('asdas', charges('2020-12', plan, users));
 console.log('works when the active users are active the entire month', charges('2020-12', plan, users) === expectedUserCount * 5000);
 

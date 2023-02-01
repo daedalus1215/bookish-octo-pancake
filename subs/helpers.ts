@@ -3,26 +3,19 @@ import { ISub, IUser } from "./sub";
 type filterUsers = (user: IUser, yearMonth: string, subscription: ISub) => boolean;
 
 export const filterUsersInMonthAndSubscription: filterUsers = (user, yearMonth, subscription) => (isDateWithinMonth(yearMonth, user.active))
-// && user.customerId === subscription.cusId);
+    && user.customerId === subscription.cusId;
 
 type isDateInRange = (yearMonth: string, userDate: Date) => boolean;
 export const isDateWithinMonth: isDateInRange = (yearMonth, userDate) => {
-    const targetDate = new Date(yearMonth);
-    
+    const targetDate = lastDay(new Date(`${yearMonth}-05`));
+
     let minimumDate = firstDay(userDate)
     let maximumDate = lastDay(userDate);
-    console.log('minimumDate', minimumDate.getTime());
-    
-    const minDate = minimumDate.setHours(0,0,0, 0);
-    console.log('minDate', minDate);
-    const maxDate = maximumDate.setHours(0,0,0, 0);
 
-    if (targetDate.getTime() >= minDate
-        && targetDate.getTime() <= maxDate) {
-        console.log('true')
+    if (targetDate >= minimumDate
+        && targetDate <= maximumDate) {
         return true;
     }
-
     return false;
 }
 
