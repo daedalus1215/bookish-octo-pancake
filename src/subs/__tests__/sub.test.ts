@@ -65,15 +65,22 @@ describe('sub.test.ts', () => {
     it('should work when the active users are active the entire month', () => {
         // Arrange
         const expected = 2 * 5000;
-
+        
         // Act
         const actual = charges('2020-12', plan, users);
+        
+        // Assert
+        expect(actual).to.eq(expected);
+    });
+    
+    it('works when the active users are active, with a deactive month', () => {
+        // Arrange
+        const expected = 7258.06;
+
+        // Act
+        const actual = charges('2023-12', plan, users);
 
         // Assert
         expect(actual).to.eq(expected);
     });
 });
-
-//@TODO: finish here.
-// console.log('works when the active users are active, with a deactive month', charges('2023-12', plan, users) === 7258.06);
-
