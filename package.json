@@ -12,10 +12,15 @@
   },
   "scripts": {
     "generateInvoice": "ts-node invoiceGeneration.ts",
-    "subs": "ts-node subs/__tests__/sub.test.ts"
+    "subs": "ts-node subs/__tests__/sub.test.ts",
+    "test": "mocha -r ts-node/register src/**/*.test.ts"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.4",
     "@types/jest": "^29.4.0",
-    "@types/node": "^18.11.18"
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.18",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
   }
 }
