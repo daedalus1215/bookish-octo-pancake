@@ -18,7 +18,6 @@ export interface ISub {
 export const charges = (yearMonth: string, subscription: ISub, users: IUser[]): number => {
     const subscribers = users
         .filter(user => filterUsersInMonthAndSubscription(user, yearMonth, subscription));
-    console.log('subs', subscribers)
     return (subscribers.length > 0) ? +determineSubscriptionFeeForUsers(subscribers, subscription).toFixed(2) : 0;
 }
 
