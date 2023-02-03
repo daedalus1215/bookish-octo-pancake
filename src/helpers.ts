@@ -1,10 +1,5 @@
 import { ISub, IUser } from "./sub";
 
-type filterUsers = (user: IUser, yearMonth: string, subscription: ISub) => boolean;
-
-export const filterUsersInMonthAndSubscription: filterUsers = (user, yearMonth, subscription) => (user.customerId === subscription.cusId)
-    && (isDateWithinMonth(yearMonth, user.active));
-
 type isDateInRange = (yearMonth: string, userDate: Date) => boolean;
 export const isDateWithinMonth: isDateInRange = (yearMonth, userDate) => {
     const targetDate = firstDay(new Date(`${yearMonth}`));
@@ -28,3 +23,8 @@ type dateGetters = (date: Date) => Date;
 export const firstDay: dateGetters = (date) => new Date(date.getFullYear(), date.getMonth() + 1);
 export const lastDay: dateGetters = (date) => new Date(date.getFullYear(), date.getMonth() + 2, 0);
 export const next: dateGetters = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+
+
+// interfaces
+export type filterUsers = (user: IUser, yearMonth: string, subscription: ISub) => boolean;
+export type determineSubs = (users: IUser[], subscription: ISub) => number;
