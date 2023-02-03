@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+import 'mocha';
 import { charges, ISub, IUser } from "../sub";
 
 
@@ -47,7 +49,31 @@ const plan: ISub = {
     price: 5000,
 };
 
-console.log('works when no users are active', charges('2018-10', plan, users) === 0)
-console.log('works when the active users are active the entire month', charges('2020-12', plan, users) === 2 * 5000);
-console.log('works when the active users are active, with a deactive month', charges('2023-12', plan, users) === 7258.06);
+
+describe('sub.test.ts', () => {
+    it('should work when no users are active', () => {
+        // Arrange
+        const expected = 0;
+
+        // Act
+        const actual = charges('2018-10', plan, users);
+
+        // Assert
+        expect(actual).to.eq(expected);
+    });
+
+    it('should work when the active users are active the entire month', () => {
+        // Arrange
+        const expected = 2 * 5000;
+
+        // Act
+        const actual = charges('2020-12', plan, users);
+
+        // Assert
+        expect(actual).to.eq(expected);
+    });
+});
+
+//@TODO: finish here.
+// console.log('works when the active users are active, with a deactive month', charges('2023-12', plan, users) === 7258.06);
 
