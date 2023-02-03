@@ -29,8 +29,14 @@ const users: IUser[] = [
     {
         id: 4,
         name: 'E5',
-        active: new Date('2021-12-01'),
+        active: new Date('2023-12-05'),
         deactive: new Date('2021-12-14'),
+        customerId: 1,
+    },
+    {
+        id: 5,
+        name: 'E5',
+        active: new Date('2023-12-05'),
         customerId: 1,
     }
 ];
@@ -42,6 +48,6 @@ const plan: ISub = {
 };
 
 console.log('works when no users are active', charges('2018-10', plan, users) === 0)
-const expectedUserCount = 2;
-console.log('works when the active users are active the entire month', charges('2020-12', plan, users) === expectedUserCount * 5000);
+console.log('works when the active users are active the entire month', charges('2020-12', plan, users) === 2 * 5000);
+console.log('works when the active users are active, with a deactive month', charges('2023-12', plan, users) === 7258.06);
 
