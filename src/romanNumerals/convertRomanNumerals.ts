@@ -49,7 +49,7 @@ const convertMultipleNumeralCharacters = (romanNumeralCharacters: romanNumeralTy
     let summation = 0;
 
     if (romanNumeralCharacters.length > 2) {
-        for (let i = romanNumeralCharacters.length - 1; i >= 1; i -= 2) {
+        for (let i = romanNumeralCharacters.length - 1; i >= 0; i -= 2) {
             firstCharacter = romanNumeralCharacters[i];
             secondCharacter = romanNumeralCharacters[i - 1];
             if (isSubtractScenario(firstCharacter, secondCharacter)) {
@@ -77,8 +77,15 @@ const convertMultipleNumeralCharacters = (romanNumeralCharacters: romanNumeralTy
  * @param secondCharacter 
  * @returns 
  */
-const isSubtractScenario = (firstCharacter: romanNumeralTypes, secondCharacter: romanNumeralTypes) => (
-    (secondCharacter === 'I' || secondCharacter === 'X') && (firstCharacter !== secondCharacter));
+const isSubtractScenario = (firstCharacter: romanNumeralTypes, secondCharacter: romanNumeralTypes) =>
+    secondCharacter != undefined && firstCharacter != undefined && ROMAN_NUMERALS[secondCharacter] < ROMAN_NUMERALS[firstCharacter];
 
-const sum = (firstCharacter: romanNumeralTypes, secondCharacter: romanNumeralTypes): number => ROMAN_NUMERALS[firstCharacter] + ROMAN_NUMERALS[secondCharacter];
+const sum = (firstCharacter: romanNumeralTypes, secondCharacter: romanNumeralTypes): number => {
+    if (!firstCharacter) {
+        return ROMAN_NUMERALS[secondCharacter];
+    } else if (!secondCharacter) {
+        return ROMAN_NUMERALS[firstCharacter];
+    }
+    return ROMAN_NUMERALS[firstCharacter] + ROMAN_NUMERALS[secondCharacter]
+};
 const subtract = (firstCharacter: romanNumeralTypes, secondCharacter: romanNumeralTypes): number => ROMAN_NUMERALS[firstCharacter] - ROMAN_NUMERALS[secondCharacter];

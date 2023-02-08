@@ -95,7 +95,7 @@ describe('convertRomanNumerals', () => {
         expect(actual).to.be.equal(expected);
     });
 
-    it('should return 89 when LXXXIX is passed in', () => {
+    it('should return 89 when LXXXIX is passed', () => {
         // Arrange
         const expected = 89;
 
@@ -112,6 +112,28 @@ describe('convertRomanNumerals', () => {
 
         // Act
         const actual = convertRomanNumerals('XCII');
+
+        // Assert
+        expect(actual).to.be.equal(expected);
+    });
+
+    it('should return 11 when XI is passed in', () => {
+        // Arrange
+        const expected = 11;
+
+        // Act
+        const actual = convertRomanNumerals('XI');
+
+        // Assert
+        expect(actual).to.be.equal(expected);
+    });
+
+    it('should return 12 when XII is passed in', () => {
+        // Arrange
+        const expected = 12;
+
+        // Act
+        const actual = convertRomanNumerals('XII');
 
         // Assert
         expect(actual).to.be.equal(expected);
